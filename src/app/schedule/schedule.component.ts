@@ -39,5 +39,7 @@ export class ScheduleComponent implements OnInit {
     // });
   }
 
-  onSubmit() {}
+  onSubmit() {
+    console.log(this.scheduleForm.value);
+  }
 }

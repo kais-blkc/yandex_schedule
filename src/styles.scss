@@ -45,8 +45,8 @@ body {
   }
 }
 
-form.ng-dirty.ng-invalid {
-  .ng-invalid .mdc-text-field {
+form.ng-invalid {
+  .ng-dirty.ng-invalid .mdc-text-field {
     border-radius: 4px;
     background-color: #ff000010;
   }
