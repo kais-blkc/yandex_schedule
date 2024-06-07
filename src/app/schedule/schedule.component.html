@@ -1,0 +1,11 @@
+<div class="schedule-form">
+  <form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()">
+    <app-schedule-input-city formControlName="from" label="Откуда"></app-schedule-input-city>
+    <app-schedule-input-city formControlName="to" label="Куда"></app-schedule-input-city>
+
+    <button mat-fab extended color="accent" routerLink=".">
+      <mat-icon fontIcon="search"></mat-icon>
+      Поиск
+    </button>
+  </form>
+</div>

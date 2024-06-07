@@ -1,1 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+:root {
+  --c-primary: #673ab7;
+  --c-primary-hover: #673ab730;
+  --c-accent: #673ab7;
+  --c-accent-hover: #673ab730;
+}
+
+.form-field {
+  position: relative;
+  width: 100%;
+
+  &__popup {
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid var(--c-accent);
+    position: absolute;
+    width: 100%;
+    top: 90%;
+    left: -15px;
+    transition: all 0.3s ease;
+    visibility: hidden;
+    opacity: 0;
+    max-height: 0px;
+  }
+
+  // .mdc-text-field--focused
+
+  input:focus + .form-field__popup {
+    top: calc(100% + 10px);
+    visibility: visible;
+    opacity: 1;
+    max-height: 500px;
+    overflow: auto;
+  }
+}
+
+form.ng-dirty.ng-invalid {
+  .ng-invalid .mdc-text-field {
+    border-radius: 4px;
+    background-color: #ff000010;
+  }
+}

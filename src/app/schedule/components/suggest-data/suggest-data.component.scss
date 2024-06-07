@@ -1,0 +1,18 @@
+.suggest-list {
+  &__item {
+    margin: 0;
+    padding: 10px;
+    border-bottom: 1px solid #333;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    cursor: pointer;
+
+    &:last-child {
+      border: none;
+    }
+
+    &:hover {
+      background-color: var(--c-primary-hover);
+    }
+  }
+}

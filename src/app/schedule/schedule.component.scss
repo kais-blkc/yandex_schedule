@@ -1,0 +1,9 @@
+.schedule-form {
+  padding: 50px;
+
+  form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 140px;
+    gap: 10px;
+  }
+}
