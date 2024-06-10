@@ -9,9 +9,11 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  EventEmitter,
   Input,
   OnDestroy,
   OnInit,
+  Output,
   Self,
 } from '@angular/core';
 
@@ -25,6 +27,7 @@ import {
 })
 export class ScheduleInputCityComponent implements ControlValueAccessor, OnDestroy, OnInit {
   @Input() label: string;
+  @Output() cityCode: EventEmitter<string> = new EventEmitter<string>();
   private onChange: (value: string) => void;
   private onTouch: () => void;
   private valueSubject = new Subject<string>();
@@ -35,7 +38,7 @@ export class ScheduleInputCityComponent implements ControlValueAccessor, OnDestr
   constructor(
     @Self() private ngControl: NgControl,
     private changeDetection: ChangeDetectorRef,
-    private scheduleApiService: ScheduleApiService
+    private scheduleApiService: ScheduleApiService,
   ) {
     this.ngControl.valueAccessor = this;
   }
@@ -44,18 +47,12 @@ export class ScheduleInputCityComponent implements ControlValueAccessor, OnDestr
     this.subscribeOnValueSubject();
   }
 
-  onSuggestSelect(city: string) {
-    this.value = city;
-    this.onChange(city);
-    this.valueSubject.next(city);
-  }
-
   subscribeOnValueSubject() {
     this.valueSubject
       .pipe(
         takeWhile(() => this.alive),
         debounceTime(300),
-        distinctUntilChanged()
+        distinctUntilChanged(),
       )
       .subscribe(this.getSuggestData.bind(this));
   }
@@ -67,7 +64,6 @@ export class ScheduleInputCityComponent implements ControlValueAccessor, OnDestr
       .subscribe((res) => {
         this.suggestData = res;
         this.changeDetection.markForCheck();
-        console.log(res);
       });
   }
 
@@ -77,6 +73,16 @@ export class ScheduleInputCityComponent implements ControlValueAccessor, OnDestr
 
     this.onChange(value);
     this.valueSubject.next(value);
+  }
+
+  onSuggestSelect(city: string[]) {
+    const cityName = city[1];
+    const cityCode = city[0];
+
+    this.value = cityName;
+    this.onChange(cityName);
+    this.valueSubject.next(cityName);
+    this.cityCode.emit(cityCode);
   }
 
   ngOnDestroy(): void {
@@ -95,6 +101,4 @@ export class ScheduleInputCityComponent implements ControlValueAccessor, OnDestr
   registerOnTouched(fn: any): void {
     this.onTouch = fn;
   }
-
-  setDisabledState(isDisabled: boolean): void {}
 }

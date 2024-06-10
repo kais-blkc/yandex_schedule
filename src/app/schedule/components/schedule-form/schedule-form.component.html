@@ -1,0 +1,40 @@
+<div class="schedule-form">
+  <form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()">
+    <app-schedule-input-city
+      formControlName="from"
+      label="Откуда"
+      (cityCode)="searchParams.from = $event"
+    ></app-schedule-input-city>
+
+    <app-schedule-input-city
+      formControlName="to"
+      label="Куда"
+      (cityCode)="searchParams.to = $event"
+    ></app-schedule-input-city>
+
+    <div class="datepicker">
+      <mat-form-field>
+        <mat-label>Дата</mat-label>
+        <input formControlName="date" matInput [matDatepicker]="dp3" />
+        <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="transport-type">
+      <mat-form-field>
+        <mat-label>Тип транспорта</mat-label>
+        <mat-select formControlName="transportType">
+          @for (item of transportTypeList; track $index) {
+            <mat-option [value]="item.slug">{{ item.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button mat-fab extended color="accent" routerLink="." [disabled]="scheduleForm.invalid">
+      <mat-icon fontIcon="search"></mat-icon>
+      Поиск
+    </button>
+  </form>
+</div>

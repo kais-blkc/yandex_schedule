@@ -11,5 +11,5 @@ import { ISuggest } from '../../../types/schedule.interface';
 })
 export class SuggestDataComponent {
   @Input({ required: true }) suggestData: ISuggest[];
-  @Output() select: EventEmitter<string> = new EventEmitter<string>();
+  @Output() select: EventEmitter<string[]> = new EventEmitter<string[]>();
 }

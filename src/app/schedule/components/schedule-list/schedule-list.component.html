@@ -1,0 +1,49 @@
+<div class="schedule-list">
+  @if (searchDataSegments) {
+    <div class="schedule-list__title">
+      По вашему запросу найдено: {{ searchDataSegments.length ? searchDataSegments.length : 0 }}
+    </div>
+  }
+
+  @for (item of searchDataSegments; track $index) {
+    <mat-card class="schedule-card">
+      <mat-card-header>
+        <mat-card-title class="schedule-card__title">
+          {{ item.thread.title | uppercase }}
+          <span>({{ formatMinuteToHour(item.duration) }} | {{ item.thread.transport_type }})</span>
+        </mat-card-title>
+        <mat-card-subtitle>{{ item.days }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="schedule-card__content">
+        <div class="schedule-card__station">
+          <div class="city">{{ item.from.title }}</div>
+          <div class="time">{{ item.departure }}</div>
+        </div>
+
+        <div class="schedule-card__station">
+          <div class="city">{{ item.to.title }}</div>
+          <div class="time">{{ item.arrival }}</div>
+        </div>
+
+        <div class="schedule-card__info">
+          <div class="city">{{ item.thread.carrier.title }} | {{ item.thread.number }}</div>
+          <div class="">{{ item.thread.vehicle }}</div>
+        </div>
+
+        @if (item.thread.carrier.logo) {
+          <div class="schedule-card__logo">
+            <img src="{{ item.thread.carrier.logo }}" alt="" />
+          </div>
+        } @else if (item.thread.carrier.logo_svg) {
+          <div class="schedule-card__logo">
+            <img src="{{ item.thread.carrier.logo_svg }}" alt="" />
+          </div>
+        }
+      </mat-card-content>
+    </mat-card>
+  } @empty {
+    @if (searchDataSegments) {
+      <h2 class="text-center">Пусто</h2>
+    }
+  }
+</div>

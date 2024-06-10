@@ -1,0 +1,8 @@
+@if (loadingState$ | async) {
+  <div class="loading">
+    <div class="loading__content">
+      <img ngSrc="assets/img/loading.webp" width="400" height="480" alt="" priority />
+      <p class="loading__title">Загружаем данные...</p>
+    </div>
+  </div>
+}

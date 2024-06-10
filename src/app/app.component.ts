@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ScheduleComponent } from './schedule/schedule.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ScheduleComponent],
+  imports: [RouterOutlet, LoadingComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

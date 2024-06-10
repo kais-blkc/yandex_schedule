@@ -1,0 +1,41 @@
+.schedule-list {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__title {
+    font-size: 22px;
+  }
+}
+
+.schedule-card {
+  background-color: #ffffffcc;
+  &__title {
+    color: var(--c-primary);
+    span {
+      opacity: 0.5;
+    }
+
+    @media (max-width: 767px) {
+      span {
+        display: block;
+      }
+    }
+  }
+  &__content {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+  }
+
+  .city {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &__logo {
+    width: 100px;
+  }
+}

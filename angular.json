@@ -4,6 +4,9 @@
   "newProjectRoot": "projects",
   "projects": {
     "schedule_yandex": {
+      "i18n": {
+        "sourceLocale": "ru"
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {

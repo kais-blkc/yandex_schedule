@@ -4,7 +4,7 @@
   }
 
   @for (item of suggestData; track $index) {
-    <p class="suggest-list__item" (click)="select.emit(item[1])">
+    <p class="suggest-list__item" (click)="select.emit(item)">
       {{ item[2] }}
     </p>
   }

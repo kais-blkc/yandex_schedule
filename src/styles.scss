@@ -7,40 +7,59 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: #673ab710;
+  color: #333;
+  line-height: 140%;
 }
 
 :root {
   --c-primary: #673ab7;
   --c-primary-hover: #673ab730;
-  --c-accent: #673ab7;
-  --c-accent-hover: #673ab730;
+  --c-primary-20: #673ab720;
+  --c-accent: #ffd740;
+  --c-accent-hover: #ffd74030;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.container {
+  max-width: 90%;
+  width: 900px;
+  margin: 0 auto;
 }
 
 .form-field {
   position: relative;
   width: 100%;
 
+  .mat-mdc-form-field {
+    z-index: 10;
+  }
+
   &__popup {
     overflow: hidden;
     border-radius: 4px;
-    border: 1px solid var(--c-accent);
+    border: 1px solid var(--c-primary);
     position: absolute;
     width: 100%;
     top: 90%;
-    left: -15px;
+    left: 0px;
     transition: all 0.3s ease;
     visibility: hidden;
     opacity: 0;
     max-height: 0px;
+    z-index: 20;
   }
 
-  // .mdc-text-field--focused
-
-  input:focus + .form-field__popup {
+  .mat-mdc-form-field.mat-focused + .form-field__popup {
     top: calc(100% + 10px);
     visibility: visible;
     opacity: 1;
-    max-height: 500px;
+    max-height: 700px;
     overflow: auto;
   }
 }
@@ -50,4 +69,31 @@ form.ng-invalid {
     border-radius: 4px;
     background-color: #ff000010;
   }
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.schedule-form {
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+}
+
+body .mdc-text-field--filled:not(.mdc-text-field--disabled),
+body .mdc-text-field--filled,
+body .mdc-text-field--outlined {
+  background-color: #ffffffcc;
+}
+
+.h1 {
+  font-size: 38px;
+  font-weight: 500;
+  color: var(--c-primary);
+  line-height: 100%;
+}
+
+.text-center {
+  text-align: center;
 }
